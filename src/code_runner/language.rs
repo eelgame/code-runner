@@ -139,7 +139,7 @@ pub fn run_instructions(language: &Language, files: non_empty_vec::NonEmptyVec<p
                 build_commands: vec![
                     format!("mcs -out:a.exe {} {}", main_file_str, source_files(other_files, "cs"))
                 ],
-                run_command: "mono a.exe".to_string(),
+                run_command: "/Builds/huatuo --glot -a a.exe".to_string(),
             }
         }
 
