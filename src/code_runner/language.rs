@@ -14,7 +14,7 @@ pub enum Language {
     CoffeeScript,
     Cpp,
     Crystal,
-    huatuo,
+    Huatuo,
     Csharp,
     D,
     Elixir,
@@ -135,7 +135,7 @@ pub fn run_instructions(language: &Language, files: non_empty_vec::NonEmptyVec<p
             }
         }
         
-        Language::huatuo => {
+        Language::Huatuo => {
             RunInstructions{
                 build_commands: vec![
                     format!("mcs -out:a.exe {} {}", main_file_str, source_files(other_files, "cs"))
