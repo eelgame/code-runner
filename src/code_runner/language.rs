@@ -14,6 +14,7 @@ pub enum Language {
     CoffeeScript,
     Cpp,
     Crystal,
+    huatuo,
     Csharp,
     D,
     Elixir,
