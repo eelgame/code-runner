@@ -133,13 +133,22 @@ pub fn run_instructions(language: &Language, files: non_empty_vec::NonEmptyVec<p
                 run_command: format!("crystal run {}", main_file_str),
             }
         }
+        
+        Language::huatuo => {
+            RunInstructions{
+                build_commands: vec![
+                    format!("mcs -out:a.exe {} {}", main_file_str, source_files(other_files, "cs"))
+                ],
+                run_command: "/Builds/huatuo --glot -a a.exe".to_string(),
+            }
+        }
 
         Language::Csharp => {
             RunInstructions{
                 build_commands: vec![
                     format!("mcs -out:a.exe {} {}", main_file_str, source_files(other_files, "cs"))
                 ],
-                run_command: "/Builds/huatuo --glot -a a.exe".to_string(),
+                run_command: "mono a.exe".to_string(),
             }
         }
 
