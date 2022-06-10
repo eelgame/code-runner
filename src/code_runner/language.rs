@@ -15,7 +15,7 @@ pub enum Language {
     Cpp,
     Crystal,
     Huatuo,
-    HuatuoFocus
+    HuatuoFocus,
     Csharp,
     D,
     Elixir,
