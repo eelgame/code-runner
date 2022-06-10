@@ -138,7 +138,7 @@ pub fn run_instructions(language: &Language, files: non_empty_vec::NonEmptyVec<p
         Language::Huatuo => {
             RunInstructions{
                 build_commands: vec![
-                    format!("mcs -out:a.exe {} {}", main_file_str, source_files(other_files, "cs"))
+                    format!("mcs -unsafe -out:a.exe {} {}", main_file_str, source_files(other_files, "cs"))
                 ],
                 run_command: "/Builds/huatuo --glot -a a.exe".to_string(),
             }
@@ -147,7 +147,7 @@ pub fn run_instructions(language: &Language, files: non_empty_vec::NonEmptyVec<p
         Language::Csharp => {
             RunInstructions{
                 build_commands: vec![
-                    format!("mcs -out:a.exe {} {}", main_file_str, source_files(other_files, "cs"))
+                    format!("mcs -unsafe -out:a.exe {} {}", main_file_str, source_files(other_files, "cs"))
                 ],
                 run_command: "mono a.exe".to_string(),
             }
