@@ -75,7 +75,7 @@ fn start() -> Result<(), Error> {
         }
 
         Some(_) | None => {
-            run_default(&work_path, run_request.language, files, run_request.stdin)?
+            run_default(&work_path, run_request.language, files, run_request.stdin, run_request.run_command)?
         }
     };
 
@@ -134,6 +134,7 @@ struct RunRequest {
     files: Vec<RequestFile>,
     stdin: Option<String>,
     command: Option<String>,
+    run_command: Option<String>,
 }
 
 #[derive(serde::Deserialize, Debug)]
@@ -223,7 +224,7 @@ fn compile(work_path: &path::Path, command: &str) -> Result<cmd::SuccessOutput, 
 }
 
 
-fn run_default(work_path: &path::Path, language: language::Language, files: Vec<File>, stdin: Option<String>) -> Result<RunResult, Error> {
+fn run_default(work_path: &path::Path, language: language::Language, files: Vec<File>, stdin: Option<String>, run_command: Option<String>) -> Result<RunResult, Error> {
     let file_paths = get_relative_file_paths(work_path, files)?;
     let run_instructions = language::run_instructions(&language, file_paths);
 
@@ -231,7 +232,16 @@ fn run_default(work_path: &path::Path, language: language::Language, files: Vec<
         compile(work_path, command)?;
     }
 
-    let run_result = run(work_path, &run_instructions.run_command, stdin);
+    let run_result = match run_command {
+        Some(command) if !command.is_empty() => {
+            run(&work_path, &command, run_request.stdin)
+        }
+
+        Some(_) | None => {
+            run(work_path, &run_instructions.run_command, stdin)?
+        }
+    };
+
     Ok(run_result)
 }
 
