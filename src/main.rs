@@ -234,11 +234,11 @@ fn run_default(work_path: &path::Path, language: language::Language, files: Vec<
 
     let run_result = match run_command {
         Some(command) if !command.is_empty() => {
-            run(&work_path, &command, run_request.stdin)
+            run(&work_path, &command, stdin)
         }
 
         Some(_) | None => {
-            run(work_path, &run_instructions.run_command, stdin)?
+            run(work_path, &run_instructions.run_command, stdin)
         }
     };
 
