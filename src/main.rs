@@ -231,7 +231,7 @@ fn run_default(work_path: &path::Path, language: language::Language, files: Vec<
 
     match compile_command {
         Some(command) if !command.is_empty() => {
-            compile(work_path, command)?;
+            compile(work_path, &command)?;
         }
 
         Some(_) | None => {
