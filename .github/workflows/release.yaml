@@ -5,6 +5,7 @@ on:
     types: [created]
 
 env:
+  RUSTFLAGS: '-C target-feature=+crt-static'
   APP_NAME: code-runner
   ARCHIVE_NAME: code-runner_linux-x64.tar.gz
 
