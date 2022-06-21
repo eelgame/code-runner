@@ -32,7 +32,7 @@ jobs:
       - name: Build application
         run: |
           cargo build --release --target=x86_64-unknown-linux-gnu
-          tar -czf $ARCHIVE_NAME -C target/release $APP_NAME
+          tar -czf $ARCHIVE_NAME -C target/x86_64-unknown-linux-gnu/release $APP_NAME
 
       - name: Upload release asset
         uses: actions/upload-release-asset@v1
